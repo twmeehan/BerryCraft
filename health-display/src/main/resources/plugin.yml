@@ -1,0 +1,4 @@
+name: BerryCraft Custom Health Display
+version: '${project.version}'
+main: me.berrycraft.healthdisplay.HealthDisplay
+api-version: '1.19'
