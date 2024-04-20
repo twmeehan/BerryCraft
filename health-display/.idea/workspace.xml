@@ -5,26 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ac38c9c8-ae33-471c-aad9-1b35ad52350d" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/health-display.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/me/berrycraft/healthdisplay/DamageEventInfo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/me/berrycraft/healthdisplay/DamageEventInfo.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/me/berrycraft/healthdisplay/HealthDisplay$1.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/me/berrycraft/healthdisplay/HealthDisplay.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/plugin.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/health-display-2.0.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/maven-archiver/pom.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/original-health-display-2.0.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/me/berrycraft/healthdisplay/HealthDisplay.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/berrycraft/healthdisplay/HealthDisplay.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/plugin.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/plugin.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

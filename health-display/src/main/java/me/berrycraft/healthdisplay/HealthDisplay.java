@@ -35,7 +35,7 @@ import java.util.Map;
 public final class HealthDisplay extends JavaPlugin implements Listener {
 
     // this map of entity -> players is used to check if an entity has been damaged before
-    // in O(1) and then to check which players are currently displaying that entity's health
+    // and then to check which players are currently displaying that entity's health
     HashMap<LivingEntity, LinkedList<Player>> playersTargetingEntity = new HashMap<LivingEntity,LinkedList<Player>>();
 
 

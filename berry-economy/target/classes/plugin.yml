@@ -1,0 +1,4 @@
+name: berry-economy
+version: '1.0'
+main: me.berrycraft.berryeconomy.Berry
+api-version: '1.20'
