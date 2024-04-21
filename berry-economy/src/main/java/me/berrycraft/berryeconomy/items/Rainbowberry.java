@@ -4,13 +4,20 @@ import de.tr7zw.nbtapi.NBTItem;
 import me.berrycraft.berryeconomy.Berry;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
+import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.material.MaterialData;
 
 import java.util.ArrayList;
 
+/*
+ * Rainbowberry is a custom item that is a part of
+ * the currency of berrycraft. It is worth 10 pinkberries
+ */
 public class Rainbowberry extends CustomItem {
+
+    // use new Rainbowberry() to get an item stack containing 1 rainbowberry
 
     public Rainbowberry() {
 
@@ -41,6 +48,9 @@ public class Rainbowberry extends CustomItem {
         this.setAmount(1);
 
     }
+
+    // use new Rainbowberry(amount) to get an item stack containing x amount of rainbowberries
+
     public Rainbowberry(int amount) {
 
         super(Material.PLAYER_HEAD);
@@ -64,6 +74,8 @@ public class Rainbowberry extends CustomItem {
         lore.add(ChatColor.YELLOW + "Currency Item");
         meta.setLore(lore);
         this.setItemMeta(meta);
+
+        // the nbti CustomItem key is used to denote what items are rainbowberries
         NBTItem nbti = new NBTItem(this);
         nbti.setString("CustomItem","Rainbowberry");
         nbti.applyNBT(this);
@@ -74,5 +86,17 @@ public class Rainbowberry extends CustomItem {
         if (stack.getType()!=Material.PLAYER_HEAD) return 0;
         NBTItem nbti = new NBTItem(stack);
         return nbti.getString("CustomItem").equals("Rainbowberry") ? stack.getAmount() : 0;
+    }
+    public static int getAmount(Player p) {
+        int total = 0;
+        for (ItemStack stack : p.getInventory().getContents()) {
+            if (stack== null || stack.getType()!=Material.PLAYER_HEAD) continue;
+            else {
+                NBTItem nbti = new NBTItem(stack);
+                total += nbti.getString("CustomItem").equals("Rainbowberry") ? stack.getAmount() : 0;
+            }
+        }
+        return total;
+
     }
 }

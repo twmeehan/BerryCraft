@@ -1,20 +1,17 @@
 package me.berrycraft.berryeconomy;
 
-import de.tr7zw.nbtapi.NBTItem;
+import me.berrycraft.berryeconomy.commands.GiveCommand;
 import me.berrycraft.berryeconomy.items.CustomItemEventHandler;
-import me.berrycraft.berryeconomy.items.Rainbowberry;
-import org.bukkit.Bukkit;
-import org.bukkit.Material;
-import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.SkullMeta;
 import org.bukkit.plugin.java.JavaPlugin;
-import org.bukkit.profile.PlayerProfile;
-import org.bukkit.profile.PlayerTextures;
 
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.util.UUID;
-
+/*
+ * Main class of Berry Economy plugin
+ *
+ * Berry Economy is one of Berrycraft's main plugins that
+ * handles everything about custom items and the in-game economy
+ * such as the auction house and trading. (*Spell books may be handled
+ * by another plugin)
+ */
 public final class Berry extends JavaPlugin {
 
     @Override
@@ -27,7 +24,6 @@ public final class Berry extends JavaPlugin {
     @Override
     public void onDisable() {
 
-        //getServer().getPlayer("Doctrinal").setItemInHand(new Rainbowberry());
 
     }
 

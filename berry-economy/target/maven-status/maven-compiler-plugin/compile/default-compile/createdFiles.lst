@@ -1,6 +1,6 @@
 me/berrycraft/berryeconomy/Berry.class
-me/berrycraft/berryeconomy/GiveCommand.class
 me/berrycraft/berryeconomy/items/Rainbowberry.class
+me/berrycraft/berryeconomy/commands/GiveCommand.class
 me/berrycraft/berryeconomy/items/Raspberry.class
 me/berrycraft/berryeconomy/items/CustomItemEventHandler.class
 me/berrycraft/berryeconomy/items/Pinkberry.class

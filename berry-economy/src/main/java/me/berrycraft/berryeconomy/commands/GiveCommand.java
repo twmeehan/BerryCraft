@@ -1,4 +1,4 @@
-package me.berrycraft.berryeconomy;
+package me.berrycraft.berryeconomy.commands;
 
 import me.berrycraft.berryeconomy.items.Pinkberry;
 import me.berrycraft.berryeconomy.items.Rainbowberry;
@@ -19,16 +19,27 @@ import org.bukkit.inventory.ItemStack;
 import java.util.LinkedList;
 import java.util.List;
 
+/*
+ * Listens for the /give command and if one of
+ * the custom items is specified, runs the code
+ * to give that item
+ */
 public class GiveCommand implements Listener {
     @EventHandler
     public boolean onCommand(PlayerCommandPreprocessEvent e) {
-        if (e.getMessage().substring(0,5).equals("/give")) {
-            String[] args = e.getMessage().split(" ");
 
+        if (!e.getPlayer().hasPermission("berry-economy.give")) return false;
+
+        if (e.getMessage().substring(0,5).equals("/give")) {
+
+            String[] args = e.getMessage().split(" ");
             if (args.length < 2) {
                 return false;
             }
+
             ItemStack stack = null;
+
+            // first check if the item is a custom item since this is possible to be false
             switch (args[2]) {
                 case "berrycraft:rainbowberry" :
                     stack = new Rainbowberry();
@@ -63,19 +74,18 @@ public class GiveCommand implements Listener {
 
             }
 
+            // if the item is not a custom item then return
             if (stack == null) return false;
+
+            // handles things like /give @p
             LinkedList<Player> targets = new LinkedList<Player>();
             switch (args[1]) {
                 case "@p":
+                case "@s":
                     targets.add(e.getPlayer());
                     break;
                 case "@a":
-                    for (Player p : e.getPlayer().getServer().getOnlinePlayers()) {
-                        targets.add(p);
-                    }
-                    break;
-                case "@s":
-                    targets.add(e.getPlayer());
+                    targets.addAll(e.getPlayer().getServer().getOnlinePlayers());
                     break;
             }
             if (e.getPlayer().getServer().getPlayer(args[1]) != null) {
@@ -83,13 +93,14 @@ public class GiveCommand implements Listener {
             }
             if (targets.isEmpty()) return false;
 
+            // if amount is specified
             if (args.length > 3 && Integer.parseInt(args[3]) > 0 && Integer.parseInt(args[3]) <=64)
                 stack.setAmount(Integer.parseInt(args[3]));
+
             for (Player p : targets) {
                 p.getInventory().addItem(stack);
                 e.setCancelled(true);
             }
-
 
         }
         return false;
