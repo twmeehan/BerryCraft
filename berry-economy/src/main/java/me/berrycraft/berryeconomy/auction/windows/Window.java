@@ -4,20 +4,28 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
+/*
+ * Window contains a inventory GUI page and all the
+ * associated data such as the viewer, size,
+ * and functionality. Specific windows will extend
+ * this class and customize what the GUI looks like
+ * and how it behaves
+ */
 public abstract class Window {
 
     protected String name;
     protected int size;
-    
     protected Inventory window;
-
     protected Player viewer;
 
+    // tells the player to open this window
     public void display() {
 
         viewer.openInventory(window);
 
-    } 
+    }
+
+    // adds a border of specified ItemStack around the edge of the inventory
     public void addBorder(ItemStack border) {
 
         for (int i =0; i < 9; i++) {
@@ -35,6 +43,8 @@ public abstract class Window {
 
     }
 
+    // clears the items out of the center of the GUI
+    // used for browsing market entries
     public void clearCenter() {
 
         for (int i =1; i < 8; i++) {
@@ -45,6 +55,7 @@ public abstract class Window {
 
     }
 
+    // when any slot in the inventory is clicked
     public abstract void click(int slot);
 
     public void add(ItemStack stack) {

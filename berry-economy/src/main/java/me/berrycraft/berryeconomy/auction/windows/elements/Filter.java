@@ -9,6 +9,11 @@ import org.bukkit.inventory.meta.ItemMeta;
 
 import java.util.ArrayList;
 
+/*
+ * Filter represents the totem icon in the Auction Window
+ * that allows the user to browse items by rarity. Clicking
+ * the filter toggles through a list of rarities
+ */
 public class Filter extends Element{
 
     private static final String[] filters = {ChatColor.WHITE + "All",ChatColor.YELLOW + "Vanilla",
@@ -20,20 +25,25 @@ public class Filter extends Element{
     public Filter(Window window, int slot) {
         this.window = window;
         this.slot = slot;
+
+        // set up the icon
         icon = new ItemStack(Material.TOTEM_OF_UNDYING);
         ItemMeta totemMeta = icon.getItemMeta();
         totemMeta.setDisplayName(ChatColor.YELLOW + "Filter");
         totemMeta.setLore(getLore());
         icon.setItemMeta(totemMeta);
         setIcon();
+
     }
 
+    // updates the totems lore
     public void update() {
         ItemMeta totemMeta = icon.getItemMeta();
         totemMeta.setLore(getLore());
         icon.setItemMeta(totemMeta);
     }
 
+    // the item's lore changes based off what filter is selected
     private ArrayList<String> getLore() {
         ArrayList<String> lore = new ArrayList<>();
         lore.add(ChatColor.GRAY + "");
@@ -47,6 +57,8 @@ public class Filter extends Element{
         return lore;
 
     }
+
+    // jump to the next filter and update the icon's appearance
     @Override
     public void click() {
         selection++;

@@ -17,12 +17,18 @@ import org.bukkit.inventory.meta.ItemMeta;
 import java.util.ArrayList;
 import java.util.LinkedList;
 
+/*
+ * This is the GUI for browsing items that
+ * other players are selling. It's the first window
+ * that pops up when you run /auction
+ */
 public class AuctionWindow extends Window {
 
+    // all auction windows share a list of items that are for sale
     static LinkedList<MarketEntry> marketEntries = new LinkedList<MarketEntry>();
-
     Filter filter;
     Search search;
+
     public AuctionWindow(Player viewer) {
         size = 54;
         name = "Auction House";
@@ -31,7 +37,7 @@ public class AuctionWindow extends Window {
         setupEmtpyPage();
     }
 
-
+    // sets up the items in the GUI
     private void setupEmtpyPage() {
 
         ItemStack border = new ItemStack(Material.ORANGE_STAINED_GLASS_PANE);
@@ -48,14 +54,13 @@ public class AuctionWindow extends Window {
         emerald.setItemMeta(emeraldMeta);
         window.setItem(49,emerald);
 
-
-
         filter = new Filter(this,50);
 
         search = new Search(this,48);
 
     }
 
+    // runs when anything in the GUI is clicked
     @Override
     public void click(int slot) {
         if (slot==50) {
