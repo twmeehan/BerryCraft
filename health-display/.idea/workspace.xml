@@ -5,8 +5,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ac38c9c8-ae33-471c-aad9-1b35ad52350d" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../berry-economy/src/main/java/me/berrycraft/berryeconomy/commands/ExchangeCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../berry-economy/src/main/java/me/berrycraft/berryeconomy/Berry.java" beforeDir="false" afterPath="$PROJECT_DIR$/../berry-economy/src/main/java/me/berrycraft/berryeconomy/Berry.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../berry-economy/src/main/java/me/berrycraft/berryeconomy/items/CustomItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/../berry-economy/src/main/java/me/berrycraft/berryeconomy/items/CustomItem.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../berry-economy/src/main/resources/plugin.yml" beforeDir="false" afterPath="$PROJECT_DIR$/../berry-economy/src/main/resources/plugin.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../berry-economy/target/berry-economy-1.0.jar" beforeDir="false" afterPath="$PROJECT_DIR$/../berry-economy/target/berry-economy-1.0.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../berry-economy/target/classes/me/berrycraft/berryeconomy/Berry.class" beforeDir="false" afterPath="$PROJECT_DIR$/../berry-economy/target/classes/me/berrycraft/berryeconomy/Berry.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../berry-economy/target/classes/me/berrycraft/berryeconomy/items/CustomItem.class" beforeDir="false" afterPath="$PROJECT_DIR$/../berry-economy/target/classes/me/berrycraft/berryeconomy/items/CustomItem.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../berry-economy/target/classes/plugin.yml" beforeDir="false" afterPath="$PROJECT_DIR$/../berry-economy/target/classes/plugin.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../berry-economy/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/../berry-economy/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../berry-economy/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/../berry-economy/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../berry-economy/target/original-berry-economy-1.0.jar" beforeDir="false" afterPath="$PROJECT_DIR$/../berry-economy/target/original-berry-economy-1.0.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/me/berrycraft/healthdisplay/HealthDisplay.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/berrycraft/healthdisplay/HealthDisplay.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/health-display-2.0.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/original-health-display-2.0.jar" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -21,13 +34,13 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "main"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/main/java/me/berrycraft/healthdisplay" />

@@ -159,7 +159,7 @@ public final class HealthDisplay extends JavaPlugin implements Listener {
         // if it is a player attacking create a new damageEvent
 
         createNewDamageEvent(p,entity);
-        showHealthDisplay(p,damageEventsList.get(p).entity,0);
+        showHealthDisplay(p,damageEventsList.get(p).entity,e.getDamage());
 
 
 
