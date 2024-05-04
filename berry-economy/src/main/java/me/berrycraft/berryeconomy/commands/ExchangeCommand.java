@@ -1,6 +1,7 @@
 package me.berrycraft.berryeconomy.commands;
 
 import de.tr7zw.nbtapi.NBTItem;
+import me.berrycraft.berryeconomy.BerryUtility;
 import me.berrycraft.berryeconomy.items.CustomItem;
 import me.berrycraft.berryeconomy.items.Pinkberry;
 import me.berrycraft.berryeconomy.items.Rainbowberry;
@@ -187,7 +188,7 @@ public class ExchangeCommand implements CommandExecutor, Listener {
 
                 // idk why this is in a separate loop but optimization rly doesnt matter for this GUI
                 for (ItemStack item : items) {
-                    CustomItem.give(item,p);
+                    BerryUtility.give(p,item);
                 }
 
                 e.setCancelled(true);
@@ -222,7 +223,7 @@ public class ExchangeCommand implements CommandExecutor, Listener {
 
         // give items to the player
         for (ItemStack item : items) {
-            CustomItem.give(item,(Player)e.getPlayer());
+            BerryUtility.give((Player) e.getPlayer(),item);
         }
 
         // remove player from the list of players with this GUI open
@@ -400,10 +401,10 @@ public class ExchangeCommand implements CommandExecutor, Listener {
                 NBTItem nbti2 = new NBTItem(i);
 
                 // if they are the same custom item
-                if( nbti.getString("CustomItem").equals(nbti2.getString("CustomItem")) && i.getAmount()<64) {
+                if( nbti.getString("CustomItem").equals(nbti2.getString("CustomItem")) && i.getAmount()<stack.getMaxStackSize()) {
 
                     // see if you can fit more items in the stack
-                    if (64-i.getAmount() >= stack.getAmount()) {
+                    if (stack.getMaxStackSize()-i.getAmount() >= stack.getAmount()) {
                         i.setAmount(i.getAmount()+stack.getAmount());
                         return true;
                     } else {
@@ -417,10 +418,10 @@ public class ExchangeCommand implements CommandExecutor, Listener {
             }
 
             // if the item is a normal item, check if it's the same item with i.isSimilar(stack)
-            if (i.isSimilar(stack) && i.getAmount()<64) {
+            if (i.isSimilar(stack) && i.getAmount()<stack.getMaxStackSize()) {
 
                 // if the items being added can be fit in this stack
-                if (64-i.getAmount() >= stack.getAmount()) {
+                if (stack.getMaxStackSize()-i.getAmount() >= stack.getAmount()) {
                     i.setAmount(i.getAmount()+stack.getAmount());
                     return true;
                 } else {

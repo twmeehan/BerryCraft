@@ -1,6 +1,9 @@
 package me.berrycraft.berryeconomy.auction.windows.elements;
 
+import de.tr7zw.nbtapi.NBTItem;
 import me.berrycraft.berryeconomy.auction.windows.Window;
+import org.bukkit.Material;
+import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
 // An elements is an item in a Window that does
@@ -20,4 +23,5 @@ public abstract class Element {
         // setItem() seems to create a copy of icon so icon is set to the copy
         icon = window.getInventory().getItem(slot);
     }
+
 }

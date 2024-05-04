@@ -2,6 +2,7 @@ package me.berrycraft.berryeconomy;
 
 import me.berrycraft.berryeconomy.auction.AuctionEventHandler;
 import me.berrycraft.berryeconomy.auction.windows.AuctionWindow;
+import me.berrycraft.berryeconomy.auction.windows.elements.Price;
 import me.berrycraft.berryeconomy.auction.windows.elements.Search;
 import me.berrycraft.berryeconomy.commands.AuctionCommand;
 import me.berrycraft.berryeconomy.commands.ExchangeCommand;
@@ -29,6 +30,8 @@ public final class Berry extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new GiveCommand(), this);
         getServer().getPluginManager().registerEvents(new AuctionEventHandler(), this);
         getServer().getPluginManager().registerEvents(new Search(), this);
+        getServer().getPluginManager().registerEvents(new Price(), this);
+
 
         ExchangeCommand exchangeCommand = new ExchangeCommand();
         getServer().getPluginManager().registerEvents(exchangeCommand, this);

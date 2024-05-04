@@ -1,5 +1,7 @@
 package me.berrycraft.berryeconomy.auction.windows;
 
+import de.tr7zw.nbtapi.NBTItem;
+import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
@@ -43,12 +45,22 @@ public abstract class Window {
 
     }
 
+    // fills the window with this item
+    public void fill(ItemStack border) {
+
+        for (int i =0; i < size; i++) {
+            window.setItem(i,border);
+        }
+
+
+    }
+
     // clears the items out of the center of the GUI
     // used for browsing market entries
     public void clearCenter() {
 
         for (int i =1; i < 8; i++) {
-            for (int j =i;j <window.getSize()-9;j+=9) {
+            for (int j =i+9;j <window.getSize()-9;j+=9) {
                 window.setItem(j,null);
             }
         }

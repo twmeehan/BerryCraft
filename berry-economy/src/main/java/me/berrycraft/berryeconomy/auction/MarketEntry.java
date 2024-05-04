@@ -1,9 +1,20 @@
 package me.berrycraft.berryeconomy.auction;
 
+import de.tr7zw.nbtapi.NBTItem;
+import me.berrycraft.berryeconomy.BerryUtility;
+import me.berrycraft.berryeconomy.items.Pinkberry;
+import me.berrycraft.berryeconomy.items.Rainbowberry;
+import me.berrycraft.berryeconomy.items.Raspberry;
+import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
 
 import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.UUID;
 
 public class MarketEntry {
 
@@ -13,4 +24,152 @@ public class MarketEntry {
     Player buyer;
     LocalDateTime expirationDate;
 
+    public MarketEntry(ItemStack item, double price, Player seller, LocalDateTime expirationDate) {
+        this.item = item;
+        this.price = price;
+        this.seller = seller;
+        this.expirationDate = expirationDate;
+    }
+
+    public ItemStack getItem() {
+        return item;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public Player getSeller() {
+        return seller;
+    }
+
+    public void setBuyer(Player p) {
+        buyer = p;
+    }
+
+    public LocalDateTime getExpirationDate() {
+        return expirationDate;
+    }
+
+    public Player getBuyer() {
+        return buyer;
+    }
+
+    public ItemStack getDisplayIcon() {
+        if (buyer != null) {
+            return setupSoldItem();
+        }
+        int min = (int)LocalDateTime.now().until(expirationDate, ChronoUnit.MINUTES);
+
+        if (min < 0) {
+            return setupExpiredItem();
+        }
+        return setupPurchasableItem();
+    }
+
+    private ItemStack setupPurchasableItem() {
+
+        ItemStack icon = item.clone();
+        List<String> itemLore = icon.getItemMeta().getLore();
+        ArrayList<String> iconLore = new ArrayList<>();
+        iconLore.add(ChatColor.GRAY + "");
+        iconLore.add(ChatColor.GRAY + "Price: " + ChatColor.GOLD + ((int)(price*100))/100.0 +"rb");
+        iconLore.add(ChatColor.GRAY + "Seller: " + ChatColor.GREEN + seller.getName());
+        int min = (int)LocalDateTime.now().until(expirationDate, ChronoUnit.MINUTES);
+        if (min < 0) {
+            iconLore.add(ChatColor.GRAY + "Time Remaining: " +ChatColor.RED + "Expired");
+
+        } else {
+            iconLore.add(ChatColor.GRAY + "Time Remaining: " + min / 1440 + "d " + (min % 1440) / 60 + "h " + (min % 60) + "m");
+        }
+        if (itemLore != null) {
+            iconLore.add(ChatColor.GRAY + "");
+            iconLore.add(ChatColor.GOLD + "-----------------------------");
+            for (String s : itemLore) {
+                iconLore.add(s);
+            }
+        } else {
+            iconLore.add(ChatColor.GRAY + "");
+            iconLore.add(ChatColor.WHITE +""+ChatColor.BOLD +"Vanilla");
+        }
+        ItemMeta meta = icon.getItemMeta();
+        meta.setLore(iconLore);
+        icon.setItemMeta(meta);
+        return icon;
+    }
+    private ItemStack setupExpiredItem() {
+
+        ItemStack icon = item.clone();
+        List<String> itemLore = icon.getItemMeta().getLore();
+        ArrayList<String> iconLore = new ArrayList<>();
+        iconLore.add(ChatColor.GRAY + "");
+        iconLore.add(ChatColor.GRAY + "Price: " + ChatColor.GOLD + ((int)(price*100))/100.0 +"rb");
+        int min = (int)LocalDateTime.now().until(expirationDate, ChronoUnit.MINUTES);
+        if (min < 0) {
+            iconLore.add(ChatColor.GRAY + "Time Remaining: " +ChatColor.RED + "Expired");
+
+        } else {
+            iconLore.add(ChatColor.GRAY + "Time Remaining: " + min / 1440 + "d " + (min % 1440) / 60 + "h " + (min % 60) + "m");
+        }
+        if (itemLore != null) {
+            iconLore.add(ChatColor.GRAY + "");
+            iconLore.add(ChatColor.GOLD + "-----------------------------");
+            for (String s : itemLore) {
+                iconLore.add(s);
+            }
+        } else {
+            iconLore.add(ChatColor.GRAY + "");
+            iconLore.add(ChatColor.WHITE +""+ChatColor.BOLD +"Vanilla");
+        }
+        ItemMeta meta = icon.getItemMeta();
+        meta.setDisplayName(ChatColor.RED + "[EXPIRED] " + item.getItemMeta().getDisplayName());
+        meta.setLore(iconLore);
+        icon.setItemMeta(meta);
+        return icon;
+    }
+    private ItemStack setupSoldItem() {
+
+        ItemStack icon;
+
+        if (price < 0.1) {
+            icon = new Raspberry();
+            icon.setAmount((int) (price/0.01));
+        } else if (price < 1) {
+            icon = new Pinkberry();
+            icon.setAmount((int) (price/0.1));
+        } else {
+            icon = new Rainbowberry();
+            if (price > 64) {
+                icon.setAmount(64);
+
+            } else {
+                icon.setAmount((int) (price));
+
+            }
+        }
+
+        BerryUtility.addRandUUID(icon);
+
+        List<String> itemLore = icon.getItemMeta().getLore();
+        ArrayList<String> iconLore = new ArrayList<>();
+        iconLore.add(ChatColor.GRAY + "");
+        iconLore.add(ChatColor.GRAY + "Profits: " + ChatColor.GOLD + ((int)(price*100))/100.0 +"rb");
+        iconLore.add(ChatColor.GRAY + "Buyer: " + ChatColor.GREEN + buyer.getName());
+        if (itemLore != null) {
+            iconLore.add(ChatColor.GRAY + "");
+            iconLore.add(ChatColor.GOLD + "-----------------------------");
+            for (String s : itemLore) {
+                iconLore.add(s);
+            }
+        } else {
+            iconLore.add(ChatColor.GRAY + "");
+            iconLore.add(ChatColor.WHITE +""+ChatColor.BOLD +"Vanilla");
+        }
+        ItemMeta meta = icon.getItemMeta();
+        meta.setDisplayName(ChatColor.GREEN + "[SOLD] " +item.getItemMeta().getDisplayName());
+        meta.setLore(iconLore);
+        icon.setItemMeta(meta);
+
+        return icon;
+    }
 }

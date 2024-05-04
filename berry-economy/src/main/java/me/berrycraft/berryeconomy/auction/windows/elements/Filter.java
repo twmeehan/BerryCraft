@@ -16,7 +16,7 @@ import java.util.ArrayList;
  */
 public class Filter extends Element{
 
-    private static final String[] filters = {ChatColor.WHITE + "All",ChatColor.YELLOW + "Vanilla",
+    private static final String[] filters = {ChatColor.YELLOW + "All",ChatColor.WHITE + "Vanilla",
             ChatColor.DARK_GRAY + "Common",ChatColor.DARK_AQUA + "Uncommon",ChatColor.BLUE + "Rare",
             ChatColor.DARK_PURPLE + "Epic",ChatColor.GOLD + "Legendary"};
 
