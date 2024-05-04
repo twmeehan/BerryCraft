@@ -39,6 +39,7 @@ public final class Berry extends JavaPlugin {
         this.getCommand("auction").setExecutor(new AuctionCommand());
 
         System.out.println();
+        System.out.println("ello");
     }
 
     @Override
