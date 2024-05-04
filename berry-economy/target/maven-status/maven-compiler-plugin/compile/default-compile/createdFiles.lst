@@ -12,8 +12,8 @@ me/berrycraft/berryeconomy/auction/windows/elements/Price$2.class
 me/berrycraft/berryeconomy/auction/MarketEntry.class
 me/berrycraft/berryeconomy/auction/windows/AuctionWindow.class
 me/berrycraft/berryeconomy/auction/windows/Window.class
-me/berrycraft/berryeconomy/auction/windows/MyListingsWindow.class
 me/berrycraft/berryeconomy/auction/windows/elements/Search.class
+me/berrycraft/berryeconomy/auction/windows/MyListingsWindow.class
 me/berrycraft/berryeconomy/auction/windows/elements/Search$1.class
 me/berrycraft/berryeconomy/auction/windows/CreateListingWindow.class
 me/berrycraft/berryeconomy/items/Rainbowberry.class
@@ -22,5 +22,5 @@ me/berrycraft/berryeconomy/auction/AuctionEventHandler.class
 me/berrycraft/berryeconomy/auction/windows/elements/Price$1.class
 me/berrycraft/berryeconomy/auction/windows/elements/Stats.class
 me/berrycraft/berryeconomy/items/CustomItem.class
-me/berrycraft/berryeconomy/auction/windows/elements/Price.class
 me/berrycraft/berryeconomy/items/SpellBook.class
+me/berrycraft/berryeconomy/auction/windows/elements/Price.class
