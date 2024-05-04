@@ -84,7 +84,7 @@ public class CreateListingWindow extends Window {
             viewer.closeInventory();
             AuctionEventHandler.openMyListingsWindow(viewer);
         } else if (slot==25) {
-            AuctionWindow.marketEntries.add(new MarketEntry(getItem(),price.price,viewer, LocalDateTime.now().plusMinutes(5)));
+            AuctionWindow.marketEntries.add(new MarketEntry(getItem(),price.price,viewer, LocalDateTime.now().plusMinutes(1)));
             AuctionEventHandler.openMyListingsWindow(viewer);
         } else if (slot==20) {
             BerryUtility.give(viewer,getItem());

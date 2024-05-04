@@ -122,7 +122,7 @@ public class MarketEntry {
             iconLore.add(ChatColor.WHITE +""+ChatColor.BOLD +"Vanilla");
         }
         ItemMeta meta = icon.getItemMeta();
-        meta.setDisplayName(ChatColor.RED + "[EXPIRED] " + item.getItemMeta().getDisplayName());
+        meta.setDisplayName(ChatColor.RED + "[EXPIRED] " + item.getItemMeta().getLocalizedName());
         meta.setLore(iconLore);
         icon.setItemMeta(meta);
         return icon;
