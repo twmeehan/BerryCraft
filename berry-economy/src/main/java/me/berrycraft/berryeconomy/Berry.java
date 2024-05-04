@@ -37,9 +37,6 @@ public final class Berry extends JavaPlugin {
         getServer().getPluginManager().registerEvents(exchangeCommand, this);
         this.getCommand("exchange").setExecutor(exchangeCommand);
         this.getCommand("auction").setExecutor(new AuctionCommand());
-
-        System.out.println();
-        System.out.println("ello");
     }
 
     @Override

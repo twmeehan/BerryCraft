@@ -1,4 +1,2 @@
-berry-economy/target/
-berry-economy/target/*.jar
+berry-economy/target
 health-display/target/
-health-displau/target/*.jar
