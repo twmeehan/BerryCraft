@@ -1,5 +1,6 @@
 package me.berrycraft.berryeconomy.auction.windows;
 
+import jdk.vm.ci.code.site.Mark;
 import me.berrycraft.berryeconomy.Berry;
 import me.berrycraft.berryeconomy.auction.AuctionEventHandler;
 import me.berrycraft.berryeconomy.auction.MarketEntry;
@@ -15,6 +16,9 @@ import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
+import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
+import java.time.temporal.TemporalUnit;
 import java.util.ArrayList;
 import java.util.LinkedList;
 
@@ -62,18 +66,6 @@ public class AuctionWindow extends Window {
 
         search = new Search(this,48);
 
-        int index = 0;
-        int page = 0;
-        for (int i = marketEntries.size()-1; i >= 0; i--) {
-
-            pages[page][index] = marketEntries.get(i);
-            index++;
-            if (index > 27) {
-                index=0;
-                page++;
-            }
-
-        }
         openPage(currentPage);
     }
 
@@ -91,11 +83,23 @@ public class AuctionWindow extends Window {
 
         } else if (slot==45 && currentPage !=0) {
             openPage(currentPage - 1);
+        } else if (!(slot%9 == 0 || slot%9 == 8 || slot < 9 || slot>44)) {
+            MarketEntry entry =getMarketEntry(slot);
+            if (entry !=null) {
+                AuctionEventHandler.openWindow(viewer,new ConfirmPurchaseWindow(viewer, this,entry));
+
+            }
         }
     }
 
-    private void openPage(int page) {
+    private MarketEntry getMarketEntry(int slot) {
+        return pages[currentPage][(slot - 10 - ((slot-9)/9)*2)];
+    }
 
+
+    public void openPage(int page) {
+
+        updatePages();
         currentPage = page;
 
         ItemStack border = new ItemStack(Material.ORANGE_STAINED_GLASS_PANE);
@@ -128,6 +132,37 @@ public class AuctionWindow extends Window {
             if (pages[page][i]!=null) {
                 add(pages[page][i].getDisplayIcon());
             }
+        }
+    }
+
+    public void updatePages() {
+        pages = new MarketEntry[marketEntries.size()/28+1][28];
+        int index = 0;
+        int page = 0;
+        for (int i = marketEntries.size()-1; i >= 0; i--) {
+
+            MarketEntry entry = marketEntries.get(i);
+            if (entry.getBuyer()!=null) continue;
+            if (LocalDateTime.now().until(entry.getExpirationDate(), ChronoUnit.MINUTES)<0) continue;
+            if (search.searchCriteria != null) {
+                if (entry.getItem().getType().name().toUpperCase().contains(search.searchCriteria.replace(' ','_').toUpperCase())) {
+
+                } else if (entry.getItem().getItemMeta()!= null && entry.getItem().getItemMeta().getDisplayName().replace(' ','_').toUpperCase().contains(search.searchCriteria.replace(' ','_').toUpperCase())) {
+
+                } else{
+
+                    continue;
+                }
+            }
+
+
+            pages[page][index] = marketEntries.get(i);
+            index++;
+            if (index > 27) {
+                index=0;
+                page++;
+            }
+
         }
     }
 }

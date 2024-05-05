@@ -1,6 +1,10 @@
 package me.berrycraft.berryeconomy;
 
 import de.tr7zw.nbtapi.NBTItem;
+import me.berrycraft.berryeconomy.auction.MarketEntry;
+import me.berrycraft.berryeconomy.items.Pinkberry;
+import me.berrycraft.berryeconomy.items.Rainbowberry;
+import me.berrycraft.berryeconomy.items.Raspberry;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
@@ -96,9 +100,50 @@ public class BerryUtility {
 
 
     public static ItemStack addRandUUID(ItemStack icon) {
+        assert icon != null;
         NBTItem nbti = new NBTItem(icon);
         nbti.setString("Rand", UUID.randomUUID().toString());
         nbti.applyNBT(icon);
         return icon;
+    }
+
+    // gives the player berries that equal <profit> (1 = 1rb, 0.1, = 1pb)
+    public static void giveBerries(Player p, double profit) {
+
+        ItemStack berry;
+        if ((int)profit > 0) {
+            berry = new Rainbowberry();
+            berry.setAmount((int)profit);
+            BerryUtility.give(p,berry);
+            profit-=(int)profit;
+        }
+        profit = profit*10;
+        if ((int)profit > 0) {
+            berry = new Pinkberry();
+            berry.setAmount((int)profit);
+            BerryUtility.give(p,berry);
+            profit-=(int)profit;
+        }
+        profit = profit*10;
+        if ((int)profit > 0) {
+            berry = new Raspberry();
+            berry.setAmount((int)profit);
+            BerryUtility.give(p,berry);
+        }
+    }
+
+    // takes berries from Player p equal the <amount> (1 = 1rb, 0.1 = 1pb)
+    public static void removeBerries(Player p, double amount) {
+
+        double berries = Rainbowberry.getAmount(p)+ Pinkberry.getAmount(p)*0.1+ Raspberry.getAmount(p)*0.01;
+        p.getInventory().removeItem(new Raspberry(Raspberry.getAmount(p)));
+        p.getInventory().removeItem(new Pinkberry(Pinkberry.getAmount(p)));
+        p.getInventory().removeItem(new Rainbowberry(Rainbowberry.getAmount(p)));
+
+        giveBerries(p,berries-amount);
+
+
+
+
     }
 }

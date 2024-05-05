@@ -5,6 +5,7 @@ me/berrycraft/berryeconomy/auction/windows/ConfirmPurchaseWindow.class
 me/berrycraft/berryeconomy/commands/AuctionCommand.class
 me/berrycraft/berryeconomy/BerryUtility.class
 me/berrycraft/berryeconomy/Berry.class
+me/berrycraft/berryeconomy/auction/windows/CancelListingWindow.class
 me/berrycraft/berryeconomy/items/CustomItemEventHandler.class
 me/berrycraft/berryeconomy/auction/windows/elements/Search$2.class
 me/berrycraft/berryeconomy/auction/windows/elements/Filter.class

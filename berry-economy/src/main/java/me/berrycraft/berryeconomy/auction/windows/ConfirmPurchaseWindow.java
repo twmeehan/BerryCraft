@@ -12,6 +12,9 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
+import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
+
 public class ConfirmPurchaseWindow extends Window {
 
     AuctionWindow prevWindow;
@@ -47,10 +50,24 @@ public class ConfirmPurchaseWindow extends Window {
         if (slot==11) {
             AuctionEventHandler.openWindow(viewer,prevWindow);
         } else if (slot==15) {
+            if (LocalDateTime.now().until(entry.getExpirationDate(), ChronoUnit.MINUTES)<0) {
+                viewer.sendMessage(ChatColor.RED+"This auction has expired");
+                AuctionEventHandler.openWindow(viewer,prevWindow);
+                return;
+            }
+            if (entry.getBuyer()!=null) {
+                viewer.sendMessage(ChatColor.RED+""+entry.getBuyer().getName()+" has already purchased this item");
+                AuctionEventHandler.openWindow(viewer,prevWindow);
+                return;
+            }
             if (Raspberry.getAmount(viewer)*0.01+ Pinkberry.getAmount(viewer)*0.1+ Rainbowberry.getAmount(viewer)>entry.getPrice()) {
                 entry.setBuyer(viewer);
+                BerryUtility.removeBerries(viewer,((int)(entry.getPrice()*100))/100.0);
                 BerryUtility.give(viewer, entry.getItem());
+                prevWindow.openPage(0);
                 AuctionEventHandler.openWindow(viewer,prevWindow);
+
+
             } else {
                 viewer.sendMessage(ChatColor.RED + "You do not have enough berries");
             }

@@ -84,7 +84,15 @@ public class CreateListingWindow extends Window {
             viewer.closeInventory();
             AuctionEventHandler.openMyListingsWindow(viewer);
         } else if (slot==25) {
-            AuctionWindow.marketEntries.add(new MarketEntry(getItem(),price.price,viewer, LocalDateTime.now().plusMinutes(1)));
+            if (Math.round(price.price*100)*0.01 <= 0) {
+                viewer.sendMessage(ChatColor.RED +"Price is required");
+                return;
+            }
+            if (item == null) {
+                viewer.sendMessage(ChatColor.RED +"Item is required");
+                return;
+            }
+            AuctionWindow.marketEntries.add(new MarketEntry(getItem(),Math.round(price.price*100)*0.01,viewer, LocalDateTime.now().plusMinutes(1)));
             AuctionEventHandler.openMyListingsWindow(viewer);
         } else if (slot==20) {
             BerryUtility.give(viewer,getItem());

@@ -2,6 +2,7 @@ package me.berrycraft.berryeconomy.auction.windows.elements;
 
 import me.berrycraft.berryeconomy.Berry;
 import me.berrycraft.berryeconomy.auction.AuctionEventHandler;
+import me.berrycraft.berryeconomy.auction.windows.AuctionWindow;
 import me.berrycraft.berryeconomy.auction.windows.Window;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -87,6 +88,7 @@ public class Search extends Element implements Listener {
                     s.setIcon();
                     s.searchTimeout.cancel();
                     s.window.display();
+                    ((AuctionWindow)s.window).openPage(0);
                     openSearches.remove(e.getPlayer());
 
                 }
@@ -133,6 +135,7 @@ public class Search extends Element implements Listener {
             setIcon();
 
         }
+        ((AuctionWindow)window).openPage(0);
     }
 
     private void createSpyglass() {

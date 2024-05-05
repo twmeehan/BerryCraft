@@ -102,7 +102,7 @@ public class Price extends Element implements Listener {
         if (price <= 0) {
             lore.add(ChatColor.GRAY + "Cost: " + ChatColor.RED + "0.00");
         } else {
-            lore.add(ChatColor.GRAY + "Cost: " + ChatColor.GOLD + ((int)(price*100))/100.0);
+            lore.add(ChatColor.GRAY + "Cost: " + ChatColor.GOLD + Math.round(price*100)*0.01);
 
         }
         lore.add(ChatColor.GRAY + "");

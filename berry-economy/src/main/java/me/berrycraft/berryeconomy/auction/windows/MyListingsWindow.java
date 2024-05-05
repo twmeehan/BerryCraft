@@ -92,7 +92,7 @@ public class MyListingsWindow extends Window {
             MarketEntry entry = getMarketEntry(slot);
             if (entry!= null) {
                 if (entry.getBuyer()!=null) {
-                    recieveProfits(entry);
+                    BerryUtility.giveBerries(viewer,entry.getPrice());
                     AuctionWindow.marketEntries.remove(entry);
                     updateListings();
                 } else if ((int) LocalDateTime.now().until(entry.getExpirationDate(), ChronoUnit.MINUTES)<0) {
@@ -100,34 +100,9 @@ public class MyListingsWindow extends Window {
                     AuctionWindow.marketEntries.remove(entry);
                     updateListings();
                 } else {
-
+                    AuctionEventHandler.openWindow(viewer,new CancelListingWindow(viewer, entry));
                 }
             }
-        }
-    }
-
-    public void recieveProfits(MarketEntry entry) {
-
-        double profit = entry.getPrice();
-        ItemStack berry;
-        if ((int)profit > 0) {
-            berry = new Rainbowberry();
-            berry.setAmount((int)profit);
-            BerryUtility.give(viewer,berry);
-            profit-=(int)profit;
-        }
-        profit = profit*10;
-        if ((int)profit > 0) {
-            berry = new Pinkberry();
-            berry.setAmount((int)profit);
-            BerryUtility.give(viewer,berry);
-            profit-=(int)profit;
-        }
-        profit = profit*10;
-        if ((int)profit > 0) {
-            berry = new Raspberry();
-            berry.setAmount((int)profit);
-            BerryUtility.give(viewer,berry);
         }
     }
 }
