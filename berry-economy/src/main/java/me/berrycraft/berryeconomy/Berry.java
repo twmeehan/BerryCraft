@@ -11,6 +11,8 @@ import me.berrycraft.berryeconomy.items.CustomItemEventHandler;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.checkerframework.checker.units.qual.A;
 
+import java.io.File;
+
 /*
  * Main class of Berry Economy plugin
  *
@@ -31,16 +33,27 @@ public final class Berry extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new AuctionEventHandler(), this);
         getServer().getPluginManager().registerEvents(new Search(), this);
         getServer().getPluginManager().registerEvents(new Price(), this);
+        try {
+            if (!getDataFolder().exists()) {
+                getDataFolder().mkdirs();
+            }
+            File file = new File(getDataFolder(), "config.yml");
+            if (!file.exists()) {
+                getLogger().info("Config.yml not found, creating!");
+                saveDefaultConfig();
+            } else {
+                getLogger().info("Config.yml found, loading!");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+
+        }
 
 
         ExchangeCommand exchangeCommand = new ExchangeCommand();
         getServer().getPluginManager().registerEvents(exchangeCommand, this);
         this.getCommand("exchange").setExecutor(exchangeCommand);
         this.getCommand("auction").setExecutor(new AuctionCommand());
-<<<<<<< HEAD
-
-=======
->>>>>>> refs/remotes/origin/main
     }
 
     @Override

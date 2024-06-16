@@ -1,5 +1,6 @@
 package me.berrycraft.berryeconomy.auction.windows;
 
+import me.berrycraft.berryeconomy.Berry;
 import me.berrycraft.berryeconomy.BerryUtility;
 import me.berrycraft.berryeconomy.auction.AuctionEventHandler;
 import me.berrycraft.berryeconomy.auction.MarketEntry;
@@ -93,6 +94,17 @@ public class CreateListingWindow extends Window {
                 return;
             }
             AuctionWindow.marketEntries.add(new MarketEntry(getItem(),Math.round(price.price*100)*0.01,viewer, LocalDateTime.now().plusMinutes(1)));
+            //------------------------------------
+            // adding ways to store info into json
+            //------------------------------------
+
+            for (int i = 0; i < AuctionWindow.marketEntries.size(); i++) {
+                Berry.getInstance().getConfig().set(String.valueOf(i) + ".item", AuctionWindow.marketEntries.get(i).getItem());
+                Berry.getInstance().getConfig().set(String.valueOf(i) + ".price", String.valueOf(AuctionWindow.marketEntries.get(i).getPrice()));
+                Berry.getInstance().getConfig().set(String.valueOf(i) + ".seller", AuctionWindow.marketEntries.get(i).getSeller());
+                Berry.getInstance().getConfig().set(String.valueOf(i) + ".expiration-date", AuctionWindow.marketEntries.get(i).getExpirationDate());
+            }
+            Berry.getInstance().saveConfig();
             AuctionEventHandler.openMyListingsWindow(viewer);
         } else if (slot==20) {
             BerryUtility.give(viewer,getItem());
