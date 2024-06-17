@@ -15,6 +15,7 @@ me\berrycraft\berryeconomy\auction\windows\elements\Price$2.class
 me\berrycraft\berryeconomy\items\Pinkberry.class
 me\berrycraft\berryeconomy\auction\windows\AuctionWindow.class
 me\berrycraft\berryeconomy\commands\GiveCommand.class
+me\berrycraft\berryeconomy\BerryLoot.class
 me\berrycraft\berryeconomy\items\Raspberry.class
 me\berrycraft\berryeconomy\commands\AuctionCommand.class
 me\berrycraft\berryeconomy\auction\windows\MyListingsWindow.class
