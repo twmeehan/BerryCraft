@@ -94,6 +94,18 @@ public class MyListingsWindow extends Window {
                 if (entry.getBuyer()!=null) {
                     BerryUtility.giveBerries(viewer,entry.getPrice());
                     AuctionWindow.marketEntries.remove(entry);
+
+                    //--------------------
+                    // added untested code
+                    //--------------------
+                    for (int i = 0; i < AuctionWindow.marketEntries.size(); i++) {
+                        Berry.getInstance().getConfig().set(String.valueOf(i) + ".item", AuctionWindow.marketEntries.get(i).getItem());
+                        Berry.getInstance().getConfig().set(String.valueOf(i) + ".price", String.valueOf(AuctionWindow.marketEntries.get(i).getPrice()));
+                        Berry.getInstance().getConfig().set(String.valueOf(i) + ".seller", AuctionWindow.marketEntries.get(i).getSeller());
+                        Berry.getInstance().getConfig().set(String.valueOf(i) + ".expiration-date", AuctionWindow.marketEntries.get(i).getExpirationDate());
+                    }
+
+                    Berry.getInstance().saveConfig();
                     updateListings();
                 } else if ((int) LocalDateTime.now().until(entry.getExpirationDate(), ChronoUnit.MINUTES)<0) {
                     BerryUtility.give(viewer,entry.getItem());
