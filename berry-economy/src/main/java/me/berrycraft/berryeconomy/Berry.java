@@ -33,6 +33,7 @@ public final class Berry extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new AuctionEventHandler(), this);
         getServer().getPluginManager().registerEvents(new Search(), this);
         getServer().getPluginManager().registerEvents(new Price(), this);
+        getServer().getPluginManager().registerEvents(new BerryLoot(), this);
         try {
             if (!getDataFolder().exists()) {
                 getDataFolder().mkdirs();

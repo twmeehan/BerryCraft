@@ -12,6 +12,7 @@ import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -58,19 +59,22 @@ public class ExchangeCommand implements CommandExecutor, Listener {
         meta.setDisplayName(" ");
         empty.setItemMeta(meta);
 
-        ItemStack raspberry = getSkull("http://textures.minecraft.net/texture/b12ef1b486e97e4cb124aa7629aceb91edc51d63338c91a012885493c5d9c");
+        ItemStack raspberry = new ItemStack(Material.COPPER_INGOT);
         meta = raspberry.getItemMeta();
-        meta.setDisplayName(ChatColor.GRAY + "Convert to " + ChatColor.YELLOW + "Raspberry");
+        meta.setCustomModelData(1);
+        meta.setDisplayName(ChatColor.GRAY + "Convert to " + ChatColor.YELLOW + "Copper");
         raspberry.setItemMeta(meta);
 
-        ItemStack pinkberry = getSkull("http://textures.minecraft.net/texture/778308fe4dda1bb8a96f5b226b32542f49fd65bc55b44bbc31343eb400cf5e2");
+        ItemStack pinkberry = new ItemStack(Material.IRON_INGOT);
         meta = pinkberry.getItemMeta();
-        meta.setDisplayName(ChatColor.GRAY + "Convert to " + ChatColor.LIGHT_PURPLE + "Pinkberry");
+        meta.setCustomModelData(1);
+        meta.setDisplayName(ChatColor.GRAY + "Convert to " + ChatColor.YELLOW + "Silver");
         pinkberry.setItemMeta(meta);
 
-        ItemStack rainbowberry = getSkull("http://textures.minecraft.net/texture/496f07d831d07fe1dd698569a974d2fcd8d83f7583b3877e89c9968b007f3a5d");
+        ItemStack rainbowberry = new ItemStack(Material.GOLD_INGOT);
         meta = rainbowberry.getItemMeta();
-        meta.setDisplayName(ChatColor.GRAY + "Convert to " + ChatColor.RED + "R" + ChatColor.GOLD+"a"+ChatColor.YELLOW+"i"+ChatColor.GREEN+"n"+ChatColor.BLUE+"b"+ChatColor.DARK_PURPLE+"o"+ChatColor.LIGHT_PURPLE+"w"+ChatColor.RED + "b" + ChatColor.GOLD+"e"+ChatColor.YELLOW+"r"+ChatColor.GREEN+"r"+ChatColor.BLUE+"y");
+        meta.setCustomModelData(1);
+        meta.setDisplayName(ChatColor.GRAY + "Convert to " +  ChatColor.YELLOW + "Gold");
         rainbowberry.setItemMeta(meta);
 
         ItemStack cancel = new ItemStack(Material.RED_TERRACOTTA);

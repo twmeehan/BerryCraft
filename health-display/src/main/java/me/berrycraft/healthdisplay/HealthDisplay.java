@@ -1,5 +1,6 @@
 package me.berrycraft.healthdisplay;
 
+import com.mohistmc.bukkit.entity.MohistModsEntity;
 import net.md_5.bungee.api.ChatMessageType;
 import net.md_5.bungee.api.chat.TextComponent;
 import org.bukkit.ChatColor;
@@ -9,6 +10,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.bukkit.projectiles.ProjectileSource;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import java.util.HashMap;
@@ -92,57 +94,31 @@ public final class HealthDisplay extends JavaPlugin implements Listener {
 
         EntityDamageEvent.DamageCause damageCause = e.getCause();
         Player p = null;
+        for (Player player : e.getEntity().getServer().getOnlinePlayers()) {
+            e.getEntity().getServer().broadcastMessage(player.getLocation().subtract(e.getEntity().getLocation()).toVector().normalize().crossProduct(player.getLocation().getDirection()).length() + " ");
+            e.getEntity().getServer().broadcastMessage(player.getLocation().subtract(e.getEntity().getLocation()).toVector().normalize().crossProduct(player.getLocation().getDirection()).length() < 0.2 ? "true" : "false");
+
+        }
 
         // check to see if the attacker is a player
         switch (damageCause) {
             case MAGIC: break;
             // direct melee attack
             case ENTITY_ATTACK:
+                if (e.getDamager() instanceof MohistModsEntity) {
+
+                }
                 if (!(e.getDamager() instanceof Player)) {
                     return;
                 }
                 p = (Player)e.getDamager();
                 break;
             case PROJECTILE:
-
-                // Only certain projectiles are player originating
-                if (e.getDamager().getType() == EntityType.ARROW) {
-
-                    Projectile arrow = (Arrow) e.getDamager();
-                    if (!(arrow.getShooter() instanceof Player)) {
-                        return;
-                    }
-                    p = (Player)arrow.getShooter();
-                } else if (e.getDamager().getType() == EntityType.SPECTRAL_ARROW) {
-
-                    Projectile arrow = (SpectralArrow) e.getDamager();
-                    if (!(arrow.getShooter() instanceof Player)) {
-                        return;
-                    }
-                    p = (Player)arrow.getShooter();
-                } else if (e.getDamager().getType() == EntityType.FIREBALL) {
-
-                    Fireball fireball = (Fireball) e.getDamager();
-                    if (!(fireball.getShooter() instanceof Player)) {
-                        return;
-                    }
-                    p = (Player)fireball.getShooter();
-                } else if (e.getDamager().getType() == EntityType.TRIDENT) {
-
-                    Projectile arrow = (Trident) e.getDamager();
-                    if (!(arrow.getShooter() instanceof Player)) {
-                        return;
-                    }
-                    p = (Player)arrow.getShooter();
-                } else if (e.getDamager().getType() == EntityType.SPLASH_POTION) {
-                    Projectile potion = (ThrownPotion) e.getDamager();
-                    if (!(potion.getShooter() instanceof Player)) {
-                        return;
-                    }
-                    p = (Player)potion.getShooter();
-                } else {
+                ProjectileSource shooter = ((Projectile)e.getDamager()).getShooter();
+                if (!(shooter instanceof Player)) {
                     return;
                 }
+                p = (Player) shooter;
                 break;
         }
         if (!(e.getEntity() instanceof LivingEntity) || p == null){
