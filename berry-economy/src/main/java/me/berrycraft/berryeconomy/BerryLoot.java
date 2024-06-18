@@ -18,6 +18,8 @@ public class BerryLoot implements Listener {
 
     @EventHandler
     public void onLoot(LootGenerateEvent e) {
+
+        System.out.println("loot");
         List<ItemStack> loot = e.getLoot();
         double score = 1.0;
         if (e.getEntity() != null && e.getEntity().getLocation().getWorld().getName().endsWith("_nether")) {
