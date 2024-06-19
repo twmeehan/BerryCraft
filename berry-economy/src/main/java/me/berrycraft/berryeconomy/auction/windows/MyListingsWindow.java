@@ -98,18 +98,30 @@ public class MyListingsWindow extends Window {
                     //--------------------
                     // added untested code
                     //--------------------
-                    for (int i = 0; i < AuctionWindow.marketEntries.size(); i++) {
-                        Berry.getInstance().getConfig().set(String.valueOf(i) + ".item", AuctionWindow.marketEntries.get(i).getItem());
-                        Berry.getInstance().getConfig().set(String.valueOf(i) + ".price", String.valueOf(AuctionWindow.marketEntries.get(i).getPrice()));
-                        Berry.getInstance().getConfig().set(String.valueOf(i) + ".seller", AuctionWindow.marketEntries.get(i).getSeller());
-                        Berry.getInstance().getConfig().set(String.valueOf(i) + ".expiration-date", AuctionWindow.marketEntries.get(i).getExpirationDate());
-                    }
+                    Berry.getInstance().getConfig().set(entry.getID().toString(), null);
+//                    Berry.getInstance().getConfig().set(entry.getID().toString() + ".price", null);
+//                    Berry.getInstance().getConfig().set(entry.getID().toString() + ".seller", null);
+//                    Berry.getInstance().getConfig().set(entry.getID().toString() + ".buyer", null);
+//
+//                    Berry.getInstance().getConfig().set(entry.getID().toString() + ".expiration-date", null);
+
 
                     Berry.getInstance().saveConfig();
                     updateListings();
                 } else if ((int) LocalDateTime.now().until(entry.getExpirationDate(), ChronoUnit.MINUTES)<0) {
                     BerryUtility.give(viewer,entry.getItem());
                     AuctionWindow.marketEntries.remove(entry);
+                    Berry.getInstance().getConfig().set(entry.getID().toString(), null);
+
+//                    Berry.getInstance().getConfig().set(entry.getID().toString() + ".item", null);
+//                    Berry.getInstance().getConfig().set(entry.getID().toString() + ".price", null);
+//                    Berry.getInstance().getConfig().set(entry.getID().toString() + ".seller", null);
+//                    Berry.getInstance().getConfig().set(entry.getID().toString() + ".buyer", null);
+//
+//                    Berry.getInstance().getConfig().set(entry.getID().toString() + ".expiration-date", null);
+//
+
+                    Berry.getInstance().saveConfig();
                     updateListings();
                 } else {
                     AuctionEventHandler.openWindow(viewer,new CancelListingWindow(viewer, entry));

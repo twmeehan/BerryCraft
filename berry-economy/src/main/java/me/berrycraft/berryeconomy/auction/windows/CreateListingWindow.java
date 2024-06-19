@@ -93,17 +93,17 @@ public class CreateListingWindow extends Window {
                 viewer.sendMessage(ChatColor.RED +"Item is required");
                 return;
             }
-            AuctionWindow.marketEntries.add(new MarketEntry(getItem(),Math.round(price.price*100)*0.01,viewer, LocalDateTime.now().plusMinutes(1)));
+            MarketEntry newEntry = new MarketEntry(getItem(),Math.round(price.price*100)*0.01,viewer, LocalDateTime.now().plusMinutes(1));
+            AuctionWindow.marketEntries.add(newEntry);
             //------------------------------------
             // adding ways to store info into json
             //------------------------------------
+            Berry.getInstance().getConfig().set(newEntry.getID().toString() + ".item", newEntry.getItem());
+            Berry.getInstance().getConfig().set(newEntry.getID().toString() + ".price", newEntry.getPrice());
+            Berry.getInstance().getConfig().set(newEntry.getID().toString() + ".seller", newEntry.getSeller());
+            Berry.getInstance().getConfig().set(newEntry.getID().toString() + ".buyer", newEntry.getBuyer());
 
-            for (int i = 0; i < AuctionWindow.marketEntries.size(); i++) {
-                Berry.getInstance().getConfig().set(String.valueOf(i) + ".item", AuctionWindow.marketEntries.get(i).getItem());
-                Berry.getInstance().getConfig().set(String.valueOf(i) + ".price", String.valueOf(AuctionWindow.marketEntries.get(i).getPrice()));
-                Berry.getInstance().getConfig().set(String.valueOf(i) + ".seller", AuctionWindow.marketEntries.get(i).getSeller());
-                Berry.getInstance().getConfig().set(String.valueOf(i) + ".expiration-date", AuctionWindow.marketEntries.get(i).getExpirationDate());
-            }
+            Berry.getInstance().getConfig().set(newEntry.getID().toString() + ".expiration-date", newEntry.getExpirationDate().toString());
             Berry.getInstance().saveConfig();
             AuctionEventHandler.openMyListingsWindow(viewer);
         } else if (slot==20) {

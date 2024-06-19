@@ -30,7 +30,7 @@ import java.util.LinkedList;
 public class AuctionWindow extends Window {
 
     // all auction windows share a list of items that are for sale
-    static LinkedList<MarketEntry> marketEntries = new LinkedList<MarketEntry>();
+    public static LinkedList<MarketEntry> marketEntries = new LinkedList<MarketEntry>();
 
     private MarketEntry[][] pages = new MarketEntry[marketEntries.size()/28+1][28];
     int currentPage = 0;

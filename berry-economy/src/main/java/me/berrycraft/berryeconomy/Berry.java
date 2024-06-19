@@ -1,6 +1,7 @@
 package me.berrycraft.berryeconomy;
 
 import me.berrycraft.berryeconomy.auction.AuctionEventHandler;
+import me.berrycraft.berryeconomy.auction.MarketEntry;
 import me.berrycraft.berryeconomy.auction.windows.AuctionWindow;
 import me.berrycraft.berryeconomy.auction.windows.elements.Price;
 import me.berrycraft.berryeconomy.auction.windows.elements.Search;
@@ -8,10 +9,13 @@ import me.berrycraft.berryeconomy.commands.AuctionCommand;
 import me.berrycraft.berryeconomy.commands.ExchangeCommand;
 import me.berrycraft.berryeconomy.commands.GiveCommand;
 import me.berrycraft.berryeconomy.items.CustomItemEventHandler;
+import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.checkerframework.checker.units.qual.A;
 
 import java.io.File;
+import java.time.LocalDateTime;
+import java.util.UUID;
 
 /*
  * Main class of Berry Economy plugin
@@ -48,6 +52,17 @@ public final class Berry extends JavaPlugin {
         } catch (Exception e) {
             e.printStackTrace();
 
+        }
+        for (String s : getConfig().getKeys(true) ) {
+            if (s.endsWith(".item")) {
+                String UUID = s.split(".item")[0];
+                AuctionWindow.marketEntries.add(new MarketEntry(java.util.UUID.fromString(UUID),
+                        getConfig().getItemStack(UUID+".item"),
+                        getConfig().getDouble(UUID+".price"),
+                        (Player)getConfig().get(UUID+".seller"),
+                        (Player)getConfig().get(UUID+".buyer"),
+                        LocalDateTime.parse(getConfig().getString(UUID+".expiration-date"))));
+            }
         }
 
 

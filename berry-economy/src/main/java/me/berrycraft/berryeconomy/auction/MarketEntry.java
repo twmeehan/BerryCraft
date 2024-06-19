@@ -10,6 +10,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
@@ -18,6 +19,7 @@ import java.util.UUID;
 
 public class MarketEntry {
 
+    UUID id;
     ItemStack item;
     double price;
     Player seller;
@@ -25,14 +27,26 @@ public class MarketEntry {
     LocalDateTime expirationDate;
 
     public MarketEntry(ItemStack item, double price, Player seller, LocalDateTime expirationDate) {
+        this.id = UUID.randomUUID();
         this.item = item;
         this.price = price;
         this.seller = seller;
         this.expirationDate = expirationDate;
     }
+    public MarketEntry(UUID id, ItemStack item, double price, Player seller, Player buyer, LocalDateTime expirationDate) {
+        this.id = id;
+        this.item = item;
+        this.price = price;
+        this.seller = seller;
+        this.buyer = buyer;
+        this.expirationDate = expirationDate;
+    }
 
     public ItemStack getItem() {
         return item;
+    }
+    public UUID getID() {
+        return id;
     }
 
     public double getPrice() {
@@ -73,7 +87,7 @@ public class MarketEntry {
         List<String> itemLore = icon.getItemMeta().getLore();
         ArrayList<String> iconLore = new ArrayList<>();
         iconLore.add(ChatColor.GRAY + "");
-        iconLore.add(ChatColor.GRAY + "Price: " + ChatColor.GOLD + ((int)(price*100))/100.0 +"rb");
+        iconLore.add(ChatColor.GRAY + "Price: " + ChatColor.GOLD + ((int)(price*100))/100.0 +"$");
         iconLore.add(ChatColor.GRAY + "Seller: " + ChatColor.GREEN + seller.getName());
         int min = (int)LocalDateTime.now().until(expirationDate, ChronoUnit.MINUTES);
         if (min < 0) {
@@ -103,7 +117,7 @@ public class MarketEntry {
         List<String> itemLore = icon.getItemMeta().getLore();
         ArrayList<String> iconLore = new ArrayList<>();
         iconLore.add(ChatColor.GRAY + "");
-        iconLore.add(ChatColor.GRAY + "Price: " + ChatColor.GOLD + ((int)(price*100))/100.0 +"rb");
+        iconLore.add(ChatColor.GRAY + "Price: " + ChatColor.GOLD + ((int)(price*100))/100.0 +"$");
         int min = (int)LocalDateTime.now().until(expirationDate, ChronoUnit.MINUTES);
         if (min < 0) {
             iconLore.add(ChatColor.GRAY + "Time Remaining: " +ChatColor.RED + "Expired");
@@ -153,7 +167,7 @@ public class MarketEntry {
         List<String> itemLore = icon.getItemMeta().getLore();
         ArrayList<String> iconLore = new ArrayList<>();
         iconLore.add(ChatColor.GRAY + "");
-        iconLore.add(ChatColor.GRAY + "Profits: " + ChatColor.GOLD + ((int)(price*100))/100.0 +"rb");
+        iconLore.add(ChatColor.GRAY + "Profits: " + ChatColor.GOLD + ((int)(price*100))/100.0 +"$");
         iconLore.add(ChatColor.GRAY + "Buyer: " + ChatColor.GREEN + buyer.getName());
         if (itemLore != null) {
             iconLore.add(ChatColor.GRAY + "");

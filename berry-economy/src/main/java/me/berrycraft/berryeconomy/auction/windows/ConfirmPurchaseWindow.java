@@ -1,5 +1,6 @@
 package me.berrycraft.berryeconomy.auction.windows;
 
+import me.berrycraft.berryeconomy.Berry;
 import me.berrycraft.berryeconomy.BerryUtility;
 import me.berrycraft.berryeconomy.auction.AuctionEventHandler;
 import me.berrycraft.berryeconomy.auction.MarketEntry;
@@ -62,6 +63,10 @@ public class ConfirmPurchaseWindow extends Window {
             }
             if (Raspberry.getAmount(viewer)*0.01+ Pinkberry.getAmount(viewer)*0.1+ Rainbowberry.getAmount(viewer)>entry.getPrice()) {
                 entry.setBuyer(viewer);
+
+                Berry.getInstance().getConfig().set(entry.getID().toString() + ".buyer", viewer);
+                Berry.getInstance().saveConfig();
+
                 BerryUtility.removeBerries(viewer,((int)(entry.getPrice()*100))/100.0);
                 BerryUtility.give(viewer, entry.getItem());
                 prevWindow.openPage(0);
@@ -69,7 +74,7 @@ public class ConfirmPurchaseWindow extends Window {
 
 
             } else {
-                viewer.sendMessage(ChatColor.RED + "You do not have enough berries");
+                viewer.sendMessage(ChatColor.RED + "You do not have enough money");
             }
 
 
