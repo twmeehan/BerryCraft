@@ -54,14 +54,6 @@ public class CancelListingWindow extends Window {
             BerryUtility.give(viewer,entry.getItem());
             Berry.getInstance().getConfig().set(entry.getID().toString(), null);
 
-//            Berry.getInstance().getConfig().set(entry.getID().toString() + ".item", null);
-//            Berry.getInstance().getConfig().set(entry.getID().toString() + ".price", null);
-//            Berry.getInstance().getConfig().set(entry.getID().toString() + ".seller", null);
-//            Berry.getInstance().getConfig().set(entry.getID().toString() + ".buyer", null);
-//
-//            Berry.getInstance().getConfig().set(entry.getID().toString() + ".expiration-date", null);
-
-
             Berry.getInstance().saveConfig();
             AuctionEventHandler.openMyListingsWindow(viewer);
         }

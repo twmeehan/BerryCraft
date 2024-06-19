@@ -9,6 +9,7 @@ import me.berrycraft.berryeconomy.items.Rainbowberry;
 import me.berrycraft.berryeconomy.items.Raspberry;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
+import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -69,6 +70,7 @@ public class ConfirmPurchaseWindow extends Window {
 
                 BerryUtility.removeBerries(viewer,((int)(entry.getPrice()*100))/100.0);
                 BerryUtility.give(viewer, entry.getItem());
+                viewer.playSound(viewer, Sound.BLOCK_CHAIN_BREAK,2.0f,1.7f);
                 prevWindow.openPage(0);
                 AuctionEventHandler.openWindow(viewer,prevWindow);
 

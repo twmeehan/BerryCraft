@@ -5,6 +5,10 @@ import me.berrycraft.berryeconomy.auction.windows.AuctionWindow;
 import me.berrycraft.berryeconomy.auction.windows.CreateListingWindow;
 import me.berrycraft.berryeconomy.auction.windows.MyListingsWindow;
 import me.berrycraft.berryeconomy.auction.windows.Window;
+import me.berrycraft.berryeconomy.items.Pinkberry;
+import me.berrycraft.berryeconomy.items.Rainbowberry;
+import me.berrycraft.berryeconomy.items.Raspberry;
+import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -86,10 +90,14 @@ public class AuctionEventHandler implements Listener {
 
 
             // if player is creating a listing and clicks a item in their inventory
-            if (openedWindow.get((Player)e.getWhoClicked()) instanceof CreateListingWindow &&
+            if (openedWindow.get((Player)e.getWhoClicked()) instanceof CreateListingWindow && e.getClickedInventory() != null && e.getCurrentItem() != null &&
                     e.getClickedInventory().getType()==InventoryType.PLAYER) {
 
                 CreateListingWindow c = (CreateListingWindow) openedWindow.get((Player) e.getWhoClicked());
+                if (Raspberry.getAmount(e.getCurrentItem())+ Pinkberry.getAmount(e.getCurrentItem())+ Rainbowberry.getAmount(e.getCurrentItem()) > 0) {
+                    e.getWhoClicked().sendMessage(ChatColor.RED + "You can't sell that item");
+                    return;
+                }
                 c.setItem(e.getCurrentItem());
                 e.getClickedInventory().setItem(e.getSlot(),null);
 

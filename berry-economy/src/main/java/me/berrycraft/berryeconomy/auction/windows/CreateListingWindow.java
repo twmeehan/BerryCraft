@@ -7,6 +7,7 @@ import me.berrycraft.berryeconomy.auction.MarketEntry;
 import me.berrycraft.berryeconomy.auction.windows.elements.Price;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
+import org.bukkit.Sound;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemFlag;
@@ -95,6 +96,8 @@ public class CreateListingWindow extends Window {
             }
             MarketEntry newEntry = new MarketEntry(getItem(),Math.round(price.price*100)*0.01,viewer, LocalDateTime.now().plusMinutes(1));
             AuctionWindow.marketEntries.add(newEntry);
+            viewer.playSound(viewer, Sound.ENTITY_EXPERIENCE_ORB_PICKUP,2.0f,1.0f);
+
             //------------------------------------
             // adding ways to store info into json
             //------------------------------------
@@ -102,10 +105,11 @@ public class CreateListingWindow extends Window {
             Berry.getInstance().getConfig().set(newEntry.getID().toString() + ".price", newEntry.getPrice());
             Berry.getInstance().getConfig().set(newEntry.getID().toString() + ".seller", newEntry.getSeller());
             Berry.getInstance().getConfig().set(newEntry.getID().toString() + ".buyer", newEntry.getBuyer());
-
             Berry.getInstance().getConfig().set(newEntry.getID().toString() + ".expiration-date", newEntry.getExpirationDate().toString());
             Berry.getInstance().saveConfig();
+
             AuctionEventHandler.openMyListingsWindow(viewer);
+
         } else if (slot==20) {
             BerryUtility.give(viewer,getItem());
             item = null;

@@ -10,6 +10,8 @@ import me.berrycraft.berryeconomy.items.Rainbowberry;
 import me.berrycraft.berryeconomy.items.Raspberry;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
+import org.bukkit.Sound;
+import org.bukkit.SoundCategory;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemFlag;
@@ -93,34 +95,15 @@ public class MyListingsWindow extends Window {
             if (entry!= null) {
                 if (entry.getBuyer()!=null) {
                     BerryUtility.giveBerries(viewer,entry.getPrice());
+                    viewer.playSound(viewer, Sound.BLOCK_CHAIN_BREAK,2.0f,1.5f);
                     AuctionWindow.marketEntries.remove(entry);
-
-                    //--------------------
-                    // added untested code
-                    //--------------------
                     Berry.getInstance().getConfig().set(entry.getID().toString(), null);
-//                    Berry.getInstance().getConfig().set(entry.getID().toString() + ".price", null);
-//                    Berry.getInstance().getConfig().set(entry.getID().toString() + ".seller", null);
-//                    Berry.getInstance().getConfig().set(entry.getID().toString() + ".buyer", null);
-//
-//                    Berry.getInstance().getConfig().set(entry.getID().toString() + ".expiration-date", null);
-
-
                     Berry.getInstance().saveConfig();
                     updateListings();
                 } else if ((int) LocalDateTime.now().until(entry.getExpirationDate(), ChronoUnit.MINUTES)<0) {
                     BerryUtility.give(viewer,entry.getItem());
                     AuctionWindow.marketEntries.remove(entry);
                     Berry.getInstance().getConfig().set(entry.getID().toString(), null);
-
-//                    Berry.getInstance().getConfig().set(entry.getID().toString() + ".item", null);
-//                    Berry.getInstance().getConfig().set(entry.getID().toString() + ".price", null);
-//                    Berry.getInstance().getConfig().set(entry.getID().toString() + ".seller", null);
-//                    Berry.getInstance().getConfig().set(entry.getID().toString() + ".buyer", null);
-//
-//                    Berry.getInstance().getConfig().set(entry.getID().toString() + ".expiration-date", null);
-//
-
                     Berry.getInstance().saveConfig();
                     updateListings();
                 } else {
