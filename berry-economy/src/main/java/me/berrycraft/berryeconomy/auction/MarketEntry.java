@@ -109,6 +109,9 @@ public class MarketEntry {
         ItemMeta meta = icon.getItemMeta();
         meta.setLore(iconLore);
         icon.setItemMeta(meta);
+        NBTItem nbti = new NBTItem(icon);
+        nbti.setString("ID",UUID.randomUUID().toString());
+        nbti.applyNBT(icon);
         return icon;
     }
     private ItemStack setupExpiredItem() {
@@ -139,6 +142,9 @@ public class MarketEntry {
         meta.setDisplayName(ChatColor.RED + "[EXPIRED] " + item.getItemMeta().getLocalizedName());
         meta.setLore(iconLore);
         icon.setItemMeta(meta);
+        NBTItem nbti = new NBTItem(icon);
+        nbti.setString("ID",UUID.randomUUID().toString());
+        nbti.applyNBT(icon);
         return icon;
     }
     private ItemStack setupSoldItem() {
@@ -147,17 +153,18 @@ public class MarketEntry {
 
         if (price < 0.1) {
             icon = new Raspberry();
-            icon.setAmount((int) (price/0.01));
+            // +0.5 helps round
+            icon.setAmount((int) (price * 100 +0.5));
         } else if (price < 1) {
             icon = new Pinkberry();
-            icon.setAmount((int) (price/0.1));
+            icon.setAmount((int) (price * 10 +0.5));
         } else {
             icon = new Rainbowberry();
             if (price > 64) {
                 icon.setAmount(64);
 
             } else {
-                icon.setAmount((int) (price));
+                icon.setAmount((int) (price +0.5));
 
             }
         }
@@ -183,6 +190,9 @@ public class MarketEntry {
         meta.setDisplayName(ChatColor.GREEN + "[SOLD] " +item.getItemMeta().getDisplayName());
         meta.setLore(iconLore);
         icon.setItemMeta(meta);
+        NBTItem nbti = new NBTItem(icon);
+        nbti.setString("ID",UUID.randomUUID().toString());
+        nbti.applyNBT(icon);
 
         return icon;
     }

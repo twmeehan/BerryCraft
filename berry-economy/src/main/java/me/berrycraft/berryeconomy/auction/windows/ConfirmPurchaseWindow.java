@@ -68,7 +68,7 @@ public class ConfirmPurchaseWindow extends Window {
                 Berry.getInstance().getConfig().set(entry.getID().toString() + ".buyer", viewer);
                 Berry.getInstance().saveConfig();
 
-                BerryUtility.removeBerries(viewer,((int)(entry.getPrice()*100))/100.0);
+                BerryUtility.removeBerries(viewer,((int)(entry.getPrice()*100+0.5))/100.0);
                 BerryUtility.give(viewer, entry.getItem());
                 viewer.playSound(viewer, Sound.BLOCK_CHAIN_BREAK,2.0f,1.7f);
                 prevWindow.openPage(0);

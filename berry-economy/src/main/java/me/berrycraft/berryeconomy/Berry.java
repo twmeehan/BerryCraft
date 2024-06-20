@@ -9,6 +9,8 @@ import me.berrycraft.berryeconomy.commands.AuctionCommand;
 import me.berrycraft.berryeconomy.commands.ExchangeCommand;
 import me.berrycraft.berryeconomy.commands.GiveCommand;
 import me.berrycraft.berryeconomy.items.CustomItemEventHandler;
+import org.bukkit.OfflinePlayer;
+import org.bukkit.entity.HumanEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.checkerframework.checker.units.qual.A;

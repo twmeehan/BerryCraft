@@ -26,7 +26,7 @@ public class MyListingsWindow extends Window {
     Stats stats;
     int numberOfListings = 0;
 
-    MarketEntry[] entries = new MarketEntry[20];
+    MarketEntry[] entries = new MarketEntry[28];
     public MyListingsWindow(Player viewer) {
 
         size = 54;

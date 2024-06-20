@@ -94,7 +94,7 @@ public class CreateListingWindow extends Window {
                 viewer.sendMessage(ChatColor.RED +"Item is required");
                 return;
             }
-            MarketEntry newEntry = new MarketEntry(getItem(),Math.round(price.price*100)*0.01,viewer, LocalDateTime.now().plusMinutes(1));
+            MarketEntry newEntry = new MarketEntry(getItem(),Math.round(price.price*100)*0.01,viewer, LocalDateTime.now().plusDays(7));
             AuctionWindow.marketEntries.add(newEntry);
             viewer.playSound(viewer, Sound.ENTITY_EXPERIENCE_ORB_PICKUP,2.0f,1.0f);
 

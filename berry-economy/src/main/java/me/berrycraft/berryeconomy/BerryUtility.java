@@ -107,10 +107,11 @@ public class BerryUtility {
         return icon;
     }
 
-    // gives the player berries that equal <profit> (1 = 1rb, 0.1, = 1pb)
+    // gives the player berries that equal <profit>s (1 = 1rb, 0.1, = 1pb)
     public static void giveBerries(Player p, double profit) {
 
         ItemStack berry;
+        profit += 0.005;
         if ((int)profit > 0) {
             berry = new Rainbowberry();
             berry.setAmount((int)profit);
@@ -139,7 +140,6 @@ public class BerryUtility {
         p.getInventory().removeItem(new Raspberry(Raspberry.getAmount(p)));
         p.getInventory().removeItem(new Pinkberry(Pinkberry.getAmount(p)));
         p.getInventory().removeItem(new Rainbowberry(Rainbowberry.getAmount(p)));
-
         giveBerries(p,berries-amount);
 
 
