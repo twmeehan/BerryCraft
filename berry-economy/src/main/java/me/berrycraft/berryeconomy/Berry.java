@@ -61,8 +61,8 @@ public final class Berry extends JavaPlugin {
                 AuctionWindow.marketEntries.add(new MarketEntry(java.util.UUID.fromString(UUID),
                         getConfig().getItemStack(UUID+".item"),
                         getConfig().getDouble(UUID+".price"),
-                        (Player)getConfig().get(UUID+".seller"),
-                        (Player)getConfig().get(UUID+".buyer"),
+                        (OfflinePlayer)getConfig().get(UUID+".seller"),
+                        (OfflinePlayer)getConfig().get(UUID+".buyer"),
                         LocalDateTime.parse(getConfig().getString(UUID+".expiration-date"))));
             }
         }

@@ -6,6 +6,8 @@ import me.berrycraft.berryeconomy.items.Pinkberry;
 import me.berrycraft.berryeconomy.items.Rainbowberry;
 import me.berrycraft.berryeconomy.items.Raspberry;
 import org.bukkit.ChatColor;
+import org.bukkit.OfflinePlayer;
+import org.bukkit.entity.HumanEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -22,8 +24,8 @@ public class MarketEntry {
     UUID id;
     ItemStack item;
     double price;
-    Player seller;
-    Player buyer;
+    OfflinePlayer seller;
+    OfflinePlayer buyer;
     LocalDateTime expirationDate;
 
     public MarketEntry(ItemStack item, double price, Player seller, LocalDateTime expirationDate) {
@@ -33,7 +35,7 @@ public class MarketEntry {
         this.seller = seller;
         this.expirationDate = expirationDate;
     }
-    public MarketEntry(UUID id, ItemStack item, double price, Player seller, Player buyer, LocalDateTime expirationDate) {
+    public MarketEntry(UUID id, ItemStack item, double price, OfflinePlayer seller, OfflinePlayer buyer, LocalDateTime expirationDate) {
         this.id = id;
         this.item = item;
         this.price = price;
@@ -53,7 +55,7 @@ public class MarketEntry {
         return price;
     }
 
-    public Player getSeller() {
+    public OfflinePlayer getSeller() {
         return seller;
     }
 
@@ -65,7 +67,7 @@ public class MarketEntry {
         return expirationDate;
     }
 
-    public Player getBuyer() {
+    public OfflinePlayer getBuyer() {
         return buyer;
     }
 
